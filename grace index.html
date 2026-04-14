@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>侍旖旎 | Yini Shi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #050505; /* 极深邃的背景色 */
+            --card-bg: rgba(255, 255, 255, 0.02); /* 毛玻璃底色 */
+            --border-color: rgba(255, 255, 255, 0.08); /* 微弱的边框线 */
+            --text-main: #f3f4f6; /* 主文本色 */
+            --text-muted: #8b949e; /* 辅助文本色 */
+            --accent: #58a6ff; /* 科技蓝强调色 */
+            --accent-glow: rgba(88, 166, 255, 0.3); /* 发光特效 */
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(88, 166, 255, 0.04), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(138, 43, 226, 0.04), transparent 25%);
+        }
+
+        /* 选中文字的颜色 */
+        ::selection {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 5rem 20px;
+        }
+
+        /* 头部信息 */
+        header {
+            margin-bottom: 4rem;
+            animation: fade-in-down 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            letter-spacing: -0.03em;
+            background: linear-gradient(180deg, #fff 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px; /* 极简的微小圆角 */
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .contact-links a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+            transform: translateY(-1px);
+        }
+
+        /* 模块通用样式 */
+        section {
+            margin-bottom: 4rem;
+            animation: fade-in-up 0.8s ease-out backwards;
+        }
+        section:nth-child(2) { animation-delay: 0.1s; }
+        section:nth-child(3) { animation-delay: 0.2s; }
+        section:nth-child(4) { animation-delay: 0.3s; }
+
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.9rem;
+        }
+
+        h2::before {
+            content: "";
+            display: block;
+            width: 30px;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        /* 个人简介卡片 */
+        .about-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: border-color 0.3s ease;
+        }
+
+        .about-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .about-card ul {
+            padding-left: 18px;
+            margin: 0;
+            color: var(--text-muted);
+        }
+
+        .about-card li {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .about-card strong {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        /* 时间轴：工作经历 */
+        .timeline {
+            position: relative;
+            padding-left: 24px;
+            border-left: 1px solid var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -28.5px;
+            top: 5px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--bg-color);
+            border: 2px solid var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover::before {
+            border-color: var(--accent);
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .time-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            display: inline-block;
+            background: var(--card-bg);
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .timeline-item:hover .time-tag {
+            color: var(--accent);
+            border-color: rgba(88, 166, 255, 0.2);
+        }
+
+        .job-title {
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin: 0 0 4px 0;
+            color: var(--text-main);
+        }
+
+        .company {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            font-weight: 300;
+        }
+
+        .job-desc {
+            color: #9ca3af;
+            font-size: 0.95rem;
+            margin: 0;
+            padding-left: 18px;
+        }
+        
+        .job-desc li {
+            margin-bottom: 6px;
+        }
+
+        /* 动画关键帧 */
+        @keyframes fade-in-down {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .container { padding: 3rem 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>侍旖旎</h1>
+            <div class="subtitle">资深医疗医药行业专家 · 15年复合经验</div>
+            <div class="contact-links">
+                <a href="mailto:syn0407@163.com">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    syn0407@163.com
+                </a>
+                <a href="tel:18602136353">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    18602136353
+                </a>
+            </div>
+        </header>
+
+        <section>
+            <h2>Profile</h2>
+            <div class="about-card">
+                <ul>
+                    <li><strong>核心履历：</strong>15年医疗医药行业经验，涵盖临床诊断、数字营销、医学事务及医学信息领域。</li>
+                    <li><strong>临床积淀：</strong>3年临床医生工作经验，具备扎实的内外科疾病诊疗基础与临床思维。</li>
+                    <li><strong>数字洞察：</strong>4年医药大健康自媒体与数字平台运营经验，擅长用户增长与影响力塑造。</li>
+                    <li><strong>医学事务：</strong>8年制药公司医学事务经验，横跨精神疾病、肿瘤、罕见病等多个高专业壁垒领域。</li>
+                    <li><strong>综合实力：</strong>具备极强的跨部门沟通、项目闭环管理及敏捷解决复杂合规问题的能力。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Experience</h2>
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="time-tag">2021.08 — Present</div>
+                    <h3 class="job-title">医学沟通经理</h3>
+                    <div class="company">罗氏制药上海 | 医学部</div>
+                    <ul class="job-desc">
+                        <li>优化医学信息管理与PV病例处理，主导数字化平台文献更新，改善客户医学支持体验。</li>
+                        <li>独立负责 SMA 居家康复科普视频项目及 TAE 画像项目，赋能商业机会与科研场景。</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="time-tag">2019 — 2021</div>
+                    <h3 class="job-title">医学信息专员</h3>
+                    <div class="company">住友制药（上海）有限公司 | 医学事务</div>
+                    <ul class="job-desc">
+                        <li>为抗焦虑、抑郁及精神分裂相关产品提供医学信息服务，把控宣传材料的医学合规性。</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="time-tag">2018 — 2019</div>
+                    <h3 class="job-title">医学顾问</h3>
+                    <div class="company">辉瑞（Contract） | 健康保健品部</div>
+                    <ul class="job-desc">
+                        <li>为钙尔奇、善存等核心品牌制定医学策略，主导 KOL 专家会议，建立学术共识。</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="time-tag">2016 — 2018</div>
+                    <h3 class="job-title">医学编辑</h3>
+                    <div class="company">万达信息有限公司 | 健康云部</div>
+                    <ul class="job-desc">
+                        <li>负责“上海健康云”等新媒体矩阵运营及专业医学知识库架构搭建。</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="time-tag">2014 — 2016</div>
+                    <h3 class="job-title">医学编辑</h3>
+                    <div class="company">好人生健康管理有限公司 | 健康编辑部</div>
+                    <ul class="job-desc">
+                        <li>统筹健康科普内容撰写、WHO“健康促进单位”项目审计支持及体检大数据分析。</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="time-tag">2011 — 2014</div>
+                    <h3 class="job-title">住院医师 (全科)</h3>
+                    <div class="company">上海交通大学附属第六人民医院</div>
+                    <ul class="job-desc">
+                        <li>完成心内科、重症监护室等十余个科室轮转，熟练掌握危重症处理及临床规范化诊疗。</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <section>
+            <h2>Education</h2>
+            <div class="timeline">
+                <div class="timeline-item" style="margin-bottom: 0;">
+                    <div class="time-tag">2006 — 2011</div>
+                    <h3 class="job-title">临床医学 · 学士学位</h3>
+                    <div class="company">温州医科大学</div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</body>
+</html>
